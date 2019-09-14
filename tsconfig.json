@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "lib": ["es2015"],
+    "declaration": true,
+    "esModuleInterop": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "outDir": "./lib",
+    "strict": true,
+    "jsx": "react",
+    "typeRoots": ["./typings", "node_modules/@types"],
+    "baseUrl": "./",
+    "types": ["jest"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "**/__tests__/*"]
+}
