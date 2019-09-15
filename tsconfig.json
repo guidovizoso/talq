@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2015",
     "module": "commonjs",
-    "lib": ["es2015"],
+    "lib": ["es2015", "dom"],
     "declaration": true,
     "esModuleInterop": true,
     "suppressImplicitAnyIndexErrors": true,
