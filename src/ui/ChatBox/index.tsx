@@ -19,7 +19,7 @@ const Wrapper = styled.div<WrapperProps>`
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
 `;
 
 interface Props {

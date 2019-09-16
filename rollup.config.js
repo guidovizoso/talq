@@ -55,8 +55,6 @@ export default {
     alias({
       resolve: [".ts", ".js", ".tsx"],
       entries: [
-        // Needed when you are link your library via `npm link` to the app.
-        // react-dom should be only installed in app.
         { find: "react", replacement: path.resolve("./node_modules/react") }
       ]
     })

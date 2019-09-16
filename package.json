@@ -3,11 +3,10 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "build": "tsc",
+    "build": "rollup -c",
     "test": "node_modules/.bin/jest -c jest.config.js --watch",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json",
-    "rollup": "rollup -c"
+    "lint": "tslint -p tsconfig.json"
   },
   "author": "Guido Vizoso <guido.vizoso9@gmail.com>",
   "license": "MIT",

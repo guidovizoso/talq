@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from "react";
+import React, { useRef, useMemo, useEffect } from "react";
 import styled from "styled-components";
 import media from "../../styles/media";
 import colors from "../../styles/colors";
@@ -9,6 +9,7 @@ const Scroll = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   flex-grow: 1;
+  flex: 1;
 `;
 
 const Wrapper = styled.div`
@@ -20,6 +21,8 @@ const Wrapper = styled.div`
   overflow: auto;
   flex-grow: 1;
   min-height: 0;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 interface Props {
@@ -35,7 +38,7 @@ const MessagesContainer: React.FC<Props> = (props: Props) => {
     }
   };
 
-  useMemo(() => scrollToBottom(), [props.children]);
+  useEffect(() => scrollToBottom(), [props.children]);
 
   return (
     <Wrapper>
