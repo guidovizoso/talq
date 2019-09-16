@@ -1,7 +1,11 @@
 {
   "name": "talq",
   "version": "0.0.1",
-  "description": "",
+  "description": "Conversational UI library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guidovizoso/talq.git"
+  },
   "scripts": {
     "build": "rollup -c",
     "test": "node_modules/.bin/jest -c jest.config.js --watch",

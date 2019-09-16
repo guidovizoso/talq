@@ -8,7 +8,7 @@ const TextInput = styled.input`
   padding: 8px 16px;
   width: 100%;
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 1rem;
   border: 1px solid ${() => colors.borderGrey};
   transition: all 0.3s;

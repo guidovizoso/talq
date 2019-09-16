@@ -14,7 +14,7 @@ const Wrapper = styled.div<WrapperProps>`
   ${props => `height: ${props.fluid ? "100%;" : `${props.height};`}`};
   border: 1px solid ${() => colors.borderGrey};
   background-color: ${() => colors.white};
-  border-radius: 4px;
+  border-radius: 8px;
   box-shadow: 0px 13px 21px -10px rgba(0, 0, 0, 0.3);
   margin: 0;
   padding: 0;

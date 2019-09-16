@@ -14,7 +14,7 @@ const ColorBackground = styled.div<WrapperProps>`
   ${props =>
     `color: ${props.position === "left" ? colors.white : colors.black}`};
   padding: 8px 16px;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 1rem;
 `;
 

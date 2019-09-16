@@ -7,7 +7,6 @@ import Input from "./Input";
 const Wrapper = styled.div`
   box-sizing: border-box;
   padding: 16px;
-  border-top: 1px solid ${() => colors.borderGrey};
   display: flex;
   flex-direction: column;
 `;

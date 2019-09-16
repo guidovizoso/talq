@@ -11,7 +11,8 @@ const Scroll = styled.div`
 const Wrapper = styled.div`
   box-sizing: border-box;
   padding: 16px;
-  display:  flex;
+  display: flex;
+  flex-direction: column;
   flex: 1;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -33,12 +34,13 @@ const MessagesContainer: React.FC<Props> = (props: Props) => {
 
   useEffect(() => scrollToBottom(), [props.children]);
 
-  console.log(props.children);
-
   return (
     <Wrapper>
       <Scroll>{props.children}</Scroll>
-      <div style={{ clear: "both", position: "absolute", bottom: 0 }} ref={scrollRef}></div>
+      <div
+        style={{ clear: "both", position: "absolute", bottom: 0 }}
+        ref={scrollRef}
+      ></div>
     </Wrapper>
   );
 };
