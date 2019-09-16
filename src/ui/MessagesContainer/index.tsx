@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useMemo } from "react";
 import styled from "styled-components";
 import media from "../../styles/media";
 import colors from "../../styles/colors";
@@ -27,20 +27,20 @@ interface Props {
 }
 
 const MessagesContainer: React.FC<Props> = (props: Props) => {
-  let textInput = null;
+  let scrollRef = useRef<HTMLDivElement>(null);
 
-  function handleClick() {
-    textInput.focus();
-  }
+  let scrollToBottom = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  useMemo(() => scrollToBottom(), [props.children]);
+
   return (
     <Wrapper>
       <Scroll>{props.children}</Scroll>
-      <div
-        style={{ float: "left", clear: "both" }}
-        ref={input => {
-          textInput = input;
-        }}
-      ></div>
+      <div style={{ float: "left", clear: "both" }} ref={scrollRef}></div>
     </Wrapper>
   );
 };
