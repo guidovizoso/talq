@@ -1,6 +1,8 @@
 # talq (WIP)
 ## Conversational UI library
 
+![talq showcase](https://github.com/guidovizoso/talq/tree/master/docs/talq.gif)
+
 ## Getting started
 
 > This is just for development purposes
