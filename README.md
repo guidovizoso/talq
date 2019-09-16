@@ -1,7 +1,7 @@
 # talq (WIP)
 ## Conversational UI library
 
-![talq showcaseg](https://raw.githubusercontent.com/guidovizoso/talq/master/docs/talq.gif)
+<img src="https://raw.githubusercontent.com/guidovizoso/talq/master/docs/talq.gif" width="400">
 
 ## Getting started
 
