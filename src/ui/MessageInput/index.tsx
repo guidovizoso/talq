@@ -31,7 +31,10 @@ class MessageInput extends React.Component<Props, State> {
     this.props.onChange(event.target.value);
   };
   private handleSubmit = () => {
-    this.props.onSubmit(this.state.value);
+    if (this.state.value.length > 0) {
+      this.props.onSubmit(this.state.value);
+      this.setState({ value: "" });
+    }
   };
   private getApi() {
     return {

@@ -4,25 +4,18 @@ import media from "../../styles/media";
 import colors from "../../styles/colors";
 
 const Scroll = styled.div`
-  min-height: min-content;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  flex-grow: 1;
-  flex: 1;
+  width: 100%;
+  margin-top: auto;
 `;
 
 const Wrapper = styled.div`
   box-sizing: border-box;
   padding: 16px;
-  flex-direction: column;
-  justify-content: flex-end;
+  display:  flex;
   flex: 1;
-  overflow: auto;
-  flex-grow: 1;
-  min-height: 0;
-  display: flex;
-  justify-content: flex-end;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
 `;
 
 interface Props {
@@ -40,10 +33,12 @@ const MessagesContainer: React.FC<Props> = (props: Props) => {
 
   useEffect(() => scrollToBottom(), [props.children]);
 
+  console.log(props.children);
+
   return (
     <Wrapper>
       <Scroll>{props.children}</Scroll>
-      <div style={{ float: "left", clear: "both" }} ref={scrollRef}></div>
+      <div style={{ clear: "both", position: "absolute", bottom: 0 }} ref={scrollRef}></div>
     </Wrapper>
   );
 };
