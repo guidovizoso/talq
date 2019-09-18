@@ -1,5 +1,6 @@
 import typescript from "rollup-plugin-typescript2";
 import commonjs from "rollup-plugin-commonjs";
+import serve from "rollup-plugin-serve";
 import external from "rollup-plugin-peer-deps-external";
 import resolve from "rollup-plugin-node-resolve";
 import alias from "rollup-plugin-alias";
@@ -57,7 +58,9 @@ export default {
       entries: [
         { find: "react", replacement: path.resolve("./node_modules/react") }
       ]
-    })
+    }),
+    serve({
+      contentBase: ['lib'],})
   ],
   external: [
     ...Object.keys(pkg.peerDependencies),

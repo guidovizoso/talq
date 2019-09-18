@@ -14,7 +14,7 @@ const Wrapper = styled.div<WrapperProps>`
   ${props => `height: ${props.fluid ? "100%;" : `${props.height};`}`};
   border: 1px solid ${() => colors.borderGrey};
   background-color: ${() => colors.white};
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow: 0px 13px 21px -10px rgba(0, 0, 0, 0.3);
   margin: 0;
   padding: 0;
@@ -23,16 +23,24 @@ const Wrapper = styled.div<WrapperProps>`
 `;
 
 interface Props {
-  children?: JSX.Element[] | JSX.Element;
+  children: JSX.Element[];
   fluid: boolean;
   width: string;
   height: string;
+  showSenderName?: boolean;
+  showSenderPic?: boolean;
 }
 
 const ChatBox: React.FC<Props> = (props: Props) => {
+
   return (
     <Wrapper fluid={props.fluid} width={props.width} height={props.height}>
-      {props.children}
+      {props.children.map(child => {
+        return React.cloneElement(child, {
+          showSenderName: props.showSenderName,
+          showSenderPic: props.showSenderPic
+        });
+      })}
     </Wrapper>
   );
 };
@@ -40,7 +48,9 @@ const ChatBox: React.FC<Props> = (props: Props) => {
 ChatBox.defaultProps = {
   fluid: false,
   width: "400px",
-  height: "400px"
+  height: "400px",
+  showSenderName: false,
+  showSenderPic: false
 };
 
 export default ChatBox;

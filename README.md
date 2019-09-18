@@ -1,7 +1,7 @@
-# talq (WIP)
+# talq💬 (WIP)
 ## Conversational UI library
 
-<img src="https://raw.githubusercontent.com/guidovizoso/talq/master/docs/talq.gif" width="400">
+<img src="https://raw.githubusercontent.com/guidovizoso/talq/master/assets/talq.gif" width="400">
 
 ## Getting started
 

@@ -5,10 +5,10 @@ import colors from "../../styles/colors";
 
 const TextInput = styled.input`
   border: none;
-  padding: 8px 16px;
+  padding: 12px 16px;
   width: 100%;
   box-sizing: border-box;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 1rem;
   border: 1px solid ${() => colors.borderGrey};
   transition: all 0.3s;
