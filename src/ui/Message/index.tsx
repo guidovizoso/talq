@@ -29,7 +29,6 @@ const borderRadiusCalculator = (
 };
 
 const ColorBackground = styled.div<WrapperProps>`
-  max-width: 65%;
   ${props =>
     `background-color: ${
       props.position === "left" ? props.color : colors.lightGrey
@@ -45,6 +44,9 @@ const ColorBackground = styled.div<WrapperProps>`
         ? "0px 0px 0px 64px"
         : "0px 64px 0px 0px"
     }`};
+  ${props =>
+    `align-self: ${props.position === "left" ? "flex-start;" : "flex-end"}`};
+  word-wrap: break-word;
 `;
 
 const Wrapper = styled.div<WrapperProps>`
@@ -59,6 +61,7 @@ const Wrapper = styled.div<WrapperProps>`
 `;
 
 const Container = styled.div`
+  max-width: 85%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -77,7 +80,7 @@ const SenderName = styled.span<SenderProps>`
   margin-top: 4px;
 `;
 
-const Placeholder = styled.div<SenderProps>`
+const SenderPic = styled.div<SenderProps>`
   box-sizing: border-box;
   background-color: ${() => colors.borderGrey};
   border-radius: 50%;
@@ -89,6 +92,11 @@ const Placeholder = styled.div<SenderProps>`
     `align-self: ${props.position === "left" ? "flex-start;" : "flex-end"}`};
   background-image: url(${props => props.senderPic});
   transition: all 0.5s;
+`;
+
+const MessageContent = styled.span`
+  font-size: 1rem;
+  word-break: break-word;
 `;
 
 interface Props {
@@ -123,10 +131,10 @@ const Message: React.FC<Props> = (props: Props) => {
           showSenderName={props.showSenderName}
           showSenderPic={props.showSenderPic}
         >
-          <span>{props.message}</span>
+          <MessageContent>{props.message}</MessageContent>
         </ColorBackground>
         {props.showSenderPic && props.senderPic && props.groupStatus.last ? (
-          <Placeholder
+          <SenderPic
             position={props.position}
             senderName={props.senderName}
             senderPic={props.senderPic}
