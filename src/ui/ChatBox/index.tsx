@@ -47,8 +47,8 @@ const ChatBox: React.FC<Props> = (props: Props) => {
 
 ChatBox.defaultProps = {
   fluid: false,
-  width: "400px",
-  height: "400px",
+  width: "500px",
+  height: "500px",
   showSenderName: false,
   showSenderPic: false
 };

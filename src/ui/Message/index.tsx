@@ -7,6 +7,10 @@ interface WrapperProps {
   readonly color?: string;
   readonly position: string;
   readonly groupStatus: { grouped: boolean; first: boolean; last: boolean };
+  readonly senderName?: string;
+  readonly senderPic?: string;
+  readonly showSenderName: boolean;
+  readonly showSenderPic: boolean;
 }
 
 const borderRadiusCalculator = (
@@ -25,6 +29,7 @@ const borderRadiusCalculator = (
 };
 
 const ColorBackground = styled.div<WrapperProps>`
+  max-width: 65%;
   ${props =>
     `background-color: ${
       props.position === "left" ? props.color : colors.lightGrey
@@ -34,13 +39,19 @@ const ColorBackground = styled.div<WrapperProps>`
   ${props => borderRadiusCalculator(props.groupStatus, props.position)};
   padding: 12px 16px;
   font-size: 1rem;
+  ${props =>
+    `margin: ${
+      props.showSenderPic && props.position === "left"
+        ? "0px 0px 0px 64px"
+        : "0px 64px 0px 0px"
+    }`};
 `;
 
 const Wrapper = styled.div<WrapperProps>`
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
   ${props =>
     `justify-content: ${
       props.position === "left" ? "flex-start;" : "flex-end"
@@ -63,7 +74,21 @@ const SenderName = styled.span<SenderProps>`
   font-size: 0.7rem;
   color: ${() => colors.textGrey};
   ${props => `text-align: ${props.position}`};
+  margin-top: 4px;
+`;
+
+const Placeholder = styled.div<SenderProps>`
+  box-sizing: border-box;
+  background-color: ${() => colors.borderGrey};
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  margin-top: -30px;
   margin-bottom: 4px;
+  ${props =>
+    `align-self: ${props.position === "left" ? "flex-start;" : "flex-end"}`};
+  background-image: url(${props => props.senderPic});
+  transition: all 0.5s;
 `;
 
 interface Props {
@@ -84,9 +109,30 @@ const Message: React.FC<Props> = (props: Props) => {
       color={props.color}
       position={props.position}
       groupStatus={props.groupStatus}
+      showSenderName={props.showSenderName}
+      showSenderPic={props.showSenderPic}
     >
       <Container>
-        {props.showSenderName && props.senderName && props.groupStatus.first ? (
+        <ColorBackground
+          message={props.message}
+          color={props.color}
+          position={props.position}
+          groupStatus={props.groupStatus}
+          senderName={props.senderName}
+          senderPic={props.senderPic}
+          showSenderName={props.showSenderName}
+          showSenderPic={props.showSenderPic}
+        >
+          <span>{props.message}</span>
+        </ColorBackground>
+        {props.showSenderPic && props.senderPic && props.groupStatus.last ? (
+          <Placeholder
+            position={props.position}
+            senderName={props.senderName}
+            senderPic={props.senderPic}
+          />
+        ) : null}
+        {props.showSenderName && props.senderName && props.groupStatus.last ? (
           <SenderName
             position={props.position}
             senderName={props.senderName}
@@ -95,14 +141,6 @@ const Message: React.FC<Props> = (props: Props) => {
             {props.senderName}
           </SenderName>
         ) : null}
-        <ColorBackground
-          message={props.message}
-          color={props.color}
-          position={props.position}
-          groupStatus={props.groupStatus}
-        >
-          <span>{props.message}</span>
-        </ColorBackground>
       </Container>
     </Wrapper>
   );
