@@ -34,18 +34,18 @@ const ComponentWithTalq = () => <ChatBox>{insertYourChatHere}</ChatBox>;
 
 #### Props
 
-| **Name**       | ** Type**     | ** Function**                          | ** Required** | ** Default value** |
-| -------------- | ------------- | -------------------------------------- | ------------- | ------------------ |
-| children       | JSX Element[] | The other UI components                | Yes           | None               |
-| fluid          | boolean       | Makes container 100% width and height  | No            | false              |
-| width          | string        | Container width (px, %, vw)            | false         | 500px              |
-| height         | string        | Container height (px, %, vw)           | false         | 500px              |
-| showSenderName | boolean       | Show the name of the message sender    | No            | false              |
-| showSenderPic  | boolean       | Show the picture of the message sender | No            | false              |
+| **Name**       | **Type**      | **Function**                           | **Required** | **Default value** |
+| -------------- | ------------- | -------------------------------------- | ------------ | ----------------- |
+| children       | JSX Element[] | The other UI components                | Yes          | None              |
+| fluid          | boolean       | Makes container 100% width and height  | No           | false             |
+| width          | string        | Container width (px, %, vw)            | false        | 500px             |
+| height         | string        | Container height (px, %, vw)           | false        | 500px             |
+| showSenderName | boolean       | Show the name of the message sender    | No           | false             |
+| showSenderPic  | boolean       | Show the picture of the message sender | No           | false             |
 
 ### MessagesContainer
 
-Container of messages, wielder of the truth, house of the typos. It takes an array and makes it a conversation.
+Container of messages, wielder of the truth. It takes an array and makes it a conversation.
 
 ```javascript
 const ComponentWithTalq = () => (
@@ -73,6 +73,8 @@ const messages = [
 ];
 ```
 
+**If *senderName* is the same as the previous message it automatically group messages!**
+
 Behold the message properties:
 **Name**|** Type**|** Function**|** Required**|** Default value**
 :-----:|:-----:|:-----:|:-----:|:-----:
@@ -83,16 +85,27 @@ senderPic| string| The url where the pic of the sender is| No|
 
 ### MessageInput
 
-Where your inputs live. Due to the modular nature of the library, expect new inputs in the future
+Where your inputs live. Due to the modular nature of the library, expect new inputs in the future.
+It exposes two functions in the _render props pattern_.
 
 ```javascript
 const ComponentWithTalq = () => (
   <ChatBox>
     <MessagesContainer messages={messages} />
-    <MessageInput>{yourInputsHere}</MessageInput>
+    <MessageInput>
+      {({ handleChange, handleSubmit }) => ({ yourInputsHere })}
+    </MessageInput>
   </ChatBox>
 );
 ```
+
+#### handleChange
+
+Returns the value of the input when onChange event is triggered.
+
+#### handleSubmit
+
+Returns the value of the input when the user submits. (By default when it presses the Enter key)
 
 ### Input
 
@@ -102,7 +115,47 @@ Standard text input to get your chat working. It uses
 const ComponentWithTalq = () => (
   <ChatBox>
     <MessagesContainer messages={messages} />
-    <MessageInput>{yourInputsHere}</MessageInput>
+    <MessageInput>
+      {({ handleChange, handleSubmit }) => (
+        <Input
+          handleChange={value => console.log("handleChange", value)}
+          handleSubmit={value => console.log("handleSubmit", value)}
+        />
+      )}
+    </MessageInput>
   </ChatBox>
 );
 ```
+
+### Status (optional component)
+
+It let's you show a little status message on a certain action, the clasic "XXX is writing..."
+
+```javascript
+const ComponentWithTalq = () => (
+  <ChatBox>
+    <MessagesContainer messages={messages} />
+    <Status text={user.isWriting ? "XXX is writing..." : null}>
+    <MessageInput>
+      {({ handleChange, handleSubmit }) => (
+        <Input
+          handleChange={value => console.log("handleChange", value)}
+          handleSubmit={value => console.log("handleSubmit", value)}
+        />
+      )}
+    </MessageInput>
+  </ChatBox>
+);
+```
+
+
+## Roadmap
+
+- [x] First release
+- [x] Automatic message grouping
+- [ ] Detailed documentation
+- [ ] Contributing.md
+- [ ] Images support
+- [ ] Bubbles input
+- [ ] Theming support
+- [ ] Emoji input
