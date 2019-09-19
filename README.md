@@ -1,87 +1,108 @@
-# talq💬 (WIP)
-## Conversational UI library
+# talq 💬 (WIP)
 
-<img src="https://raw.githubusercontent.com/guidovizoso/talq/master/assets/talq.gif" width="400">
+### Conversational UI library for React projects
+
+<img src="https://raw.githubusercontent.com/guidovizoso/talq/master/demo.gif" width="400">
 
 ## Getting started
 
-> This is just for development purposes
+Install **talq** with your favorite package manager on the root folder of your project:
 
-First of all clone the **talq** repo and link it to be used as a npm dependecy.
+    npm install talq /or/ yarn add talq
 
-    git clone https://github.com/guidovizoso/talq.git
-    cd talq
-    npm link
+Once you did that you can import **talq** when needed like this:
 
-Then you should create a new react app
-
-    (in another directory)
-    npx create-react-app talq-test
-    cd talq-test
-    npm link talq
-
-Open `app.js` and have fun!
-
-Example code:
-
-```
-// You need to import from /lib because we're not on the real npm package yet
-
+```javascript
 import {
   ChatBox,
   MessagesContainer,
-  Message,
   MessageInput,
   Input,
   Status
 } from "talq/lib";
+```
 
-function App() {
-  const [messages, setMessages] = useState([]);
-  const [status, setStatus] = useState("");
-  const addMessage = newMessage =>
-    setMessages(prevMessages => [...prevMessages, newMessage]);
+These are the basic **talq** components and what they do:
 
-  const handleOnSubmit = value => {
-    addMessage({ message: value, position: "right" });
-    setTimeout(() => {
-      setStatus("John Doe is writing...");
-    }, 1000);
-    setTimeout(() => {
-      setStatus("");
-      addMessage({ message: "Hey", position: "left" });
-    }, 1500);
-  };
+### ChatBox
 
-  return (
-    <div className="App">
-      <ChatBox>
-        <MessagesContainer>
-          {messages.map(m => (
-            <Message
-              key={m.message}
-              message={m.message}
-              position={m.position}
-            />
-          ))}
-        </MessagesContainer>
-        <Status text={status} />
-        <MessageInput
-          onChange={value => console.log("onChange", value)}
-          onSubmit={value => handleOnSubmit(value)}
-        >
-          {({ value, handleChange, handleSubmit }) => {
-            return (
-              <Input
-                value={value}
-                onChange={handleChange}
-                onSubmit={handleSubmit}
-              />
-            );
-          }}
-        </MessageInput>
-      </ChatBox>
-    </div>
-  );
-}
+Parent of the whole library. It's always the upper component on the hierarchy.
+
+```javascript
+const ComponentWithTalq = () => <ChatBox>{insertYourChatHere}</ChatBox>;
+```
+
+#### Props
+
+| **Name**       | ** Type**     | ** Function**                          | ** Required** | ** Default value** |
+| -------------- | ------------- | -------------------------------------- | ------------- | ------------------ |
+| children       | JSX Element[] | The other UI components                | Yes           | None               |
+| fluid          | boolean       | Makes container 100% width and height  | No            | false              |
+| width          | string        | Container width (px, %, vw)            | false         | 500px              |
+| height         | string        | Container height (px, %, vw)           | false         | 500px              |
+| showSenderName | boolean       | Show the name of the message sender    | No            | false              |
+| showSenderPic  | boolean       | Show the picture of the message sender | No            | false              |
+
+### MessagesContainer
+
+Container of messages, wielder of the truth, house of the typos. It takes an array and makes it a conversation.
+
+```javascript
+const ComponentWithTalq = () => (
+  <ChatBox>
+    <MessagesContainer messages={messages} />
+  </ChatBox>
+);
+```
+
+#### The messages object
+
+So how does this messages you talk about look like?
+
+Like this:
+
+```javascript
+const messages = [
+  {
+    message: "Lorem ipsum dolor sit amet.",
+    position: "left",
+    key: "sdadsa2",
+    senderName: "The lorem ipsum guy",
+    senderPic: sender
+  }
+];
+```
+
+Behold the message properties:
+**Name**|** Type**|** Function**|** Required**|** Default value**
+:-----:|:-----:|:-----:|:-----:|:-----:
+message| string| The content to be displayed| Yes| “Message”
+color| string| The color of the message (Only applies to left ones)| No| "#00A896"
+senderName| string| The name of the sender| No|
+senderPic| string| The url where the pic of the sender is| No|
+
+### MessageInput
+
+Where your inputs live. Due to the modular nature of the library, expect new inputs in the future
+
+```javascript
+const ComponentWithTalq = () => (
+  <ChatBox>
+    <MessagesContainer messages={messages} />
+    <MessageInput>{yourInputsHere}</MessageInput>
+  </ChatBox>
+);
+```
+
+### Input
+
+Standard text input to get your chat working. It uses
+
+```javascript
+const ComponentWithTalq = () => (
+  <ChatBox>
+    <MessagesContainer messages={messages} />
+    <MessageInput>{yourInputsHere}</MessageInput>
+  </ChatBox>
+);
 ```
