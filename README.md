@@ -73,7 +73,7 @@ const messages = [
 ];
 ```
 
-**If *senderName* is the same as the previous message it automatically group messages!**
+**If _senderName_ is the same as the previous message it automatically group messages!**
 
 Behold the message properties:
 **Name**|** Type**|** Function**|** Required**|** Default value**
@@ -86,14 +86,25 @@ senderPic| string| The url where the pic of the sender is| No|
 ### MessageInput
 
 Where your inputs live. Due to the modular nature of the library, expect new inputs in the future.
-It exposes two functions in the _render props pattern_.
+It exposes two functions in the _render props pattern_ and the value.
 
 ```javascript
 const ComponentWithTalq = () => (
   <ChatBox>
     <MessagesContainer messages={messages} />
-    <MessageInput>
-      {({ handleChange, handleSubmit }) => ({ yourInputsHere })}
+    <MessageInput
+      onChange={value => console.log("onChange", value)}
+      onSubmit={value => handleOnSubmit(value)}
+    >
+      {({ value, handleChange, handleSubmit }) => {
+        return (
+          <Input
+            value={value}
+            onChange={handleChange}
+            onSubmit={handleSubmit}
+          />
+        );
+      }}
     </MessageInput>
   </ChatBox>
 );
@@ -116,12 +127,15 @@ const ComponentWithTalq = () => (
   <ChatBox>
     <MessagesContainer messages={messages} />
     <MessageInput>
-      {({ handleChange, handleSubmit }) => (
-        <Input
-          handleChange={value => console.log("handleChange", value)}
-          handleSubmit={value => console.log("handleSubmit", value)}
-        />
-      )}
+      {({ value, handleChange, handleSubmit }) => {
+        return (
+          <Input
+            value={value}
+            onChange={console.log(value)}
+            onSubmit={console.log(value)}
+          />
+        );
+      }}
     </MessageInput>
   </ChatBox>
 );
@@ -137,17 +151,19 @@ const ComponentWithTalq = () => (
     <MessagesContainer messages={messages} />
     <Status text={user.isWriting ? "XXX is writing..." : null}>
     <MessageInput>
-      {({ handleChange, handleSubmit }) => (
-        <Input
-          handleChange={value => console.log("handleChange", value)}
-          handleSubmit={value => console.log("handleSubmit", value)}
-        />
-      )}
+      {({ value, handleChange, handleSubmit }) => {
+        return (
+          <Input
+            value={value}
+            onChange={handleChange}
+            onSubmit={handleSubmit}
+          />
+        );
+      }}
     </MessageInput>
   </ChatBox>
 );
 ```
-
 
 ## Roadmap
 
