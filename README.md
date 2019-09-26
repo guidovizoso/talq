@@ -2,7 +2,7 @@
 
 ### Conversational UI library for React projects
 
-<img src="https://raw.githubusercontent.com/guidovizoso/talq/master/demo.gif" width="400">
+<img src="https://raw.githubusercontent.com/guidovizoso/talq/master/docs/_media/talq.gif" width="400">
 
 ## Getting started
 
