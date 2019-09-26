@@ -1,6 +1,6 @@
 {
   "name": "talq",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "description": "Conversational UI library for React projects",
   "repository": {
     "type": "git",
@@ -11,7 +11,8 @@
     "dev": "rollup -c -w",
     "test": "node_modules/.bin/jest -c jest.config.js --watch",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json"
+    "lint": "tslint -p tsconfig.json",
+    "docs": "docsify serve ./docs"
   },
   "author": "Guido Vizoso <guido.vizoso9@gmail.com>",
   "license": "MIT",
@@ -47,6 +48,7 @@
   "dependencies": {
     "@testing-library/react": "^9.1.4",
     "color": "^3.1.2",
+    "docsify-cli": "^4.3.0",
     "styled-components": "^4.3.2"
   },
   "peerDependencies": {

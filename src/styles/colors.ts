@@ -4,7 +4,7 @@ const colors = {
   lightGrey: "#EAEAEA",
   textGrey: "rgb(100, 100, 100)",
   black: "#24292e",
-  primary: "#00A896"
+  primary: "#5026a7"
 };
 
 export default colors;
